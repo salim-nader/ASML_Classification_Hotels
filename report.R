@@ -1,9 +1,15 @@
 
-install.packages("pROC")
-install.packages("caret")
-install.packages("glmnet")
-install.packages("ranger")
-install.packages("tidymodels")
+required_packages <- c(
+  "dplyr","ggplot2","caret","glmnet","pROC",
+  "ranger","xgboost","tidymodels","rpart","rpart.plot"
+)
+
+invisible(lapply(required_packages, function(pkg) {
+  if (!require(pkg, character.only = TRUE)) {
+    stop(paste("Package not installed:", pkg))
+  }
+}))
+
 
 
 library(dplyr)
@@ -112,13 +118,13 @@ hotels$is_canceled <- factor(hotels$is_canceled)
 # Check constant / near constant variables
 
 
-nearZeroVar(train, saveMetrics = TRUE)
+nearZeroVar(hotels, saveMetrics = TRUE)
 
 
 
 # Check perfect relationships/redundant variables
 
-numeric_vars <- train %>% select(where(is.numeric))
+numeric_vars <- hotels %>% select(where(is.numeric))
 
 cor_matrix <- cor(numeric_vars, use = "complete.obs")
 
@@ -133,7 +139,7 @@ findCorrelation(cor_matrix, cutoff = 0.54)
 
 # Cardinality of Categorical Variables
 
-categorical_vars <- train %>% select(where(is.factor) | where(is.character))
+categorical_vars <- hotels %>% select(where(is.factor) | where(is.character))
 
 sapply(categorical_vars, function(x) length(unique(x)))
 
@@ -143,7 +149,7 @@ sapply(categorical_vars, function(x) length(unique(x)))
 
 for (var in names(categorical_vars)) {
   print(var)
-  print(prop.table(table(train[[var]], train$is_canceled),1))
+  print(prop.table(table(hotels[[var]], hotels$is_canceled),1))
 }
 
 
@@ -151,7 +157,7 @@ for (var in names(categorical_vars)) {
 # Univariate Predictive Power (Numeric)
 
 numeric_vars %>%
-  mutate(is_canceled = train$is_canceled) %>%
+  mutate(is_canceled = hotels$is_canceled) %>%
   group_by(is_canceled) %>%
   summarise(across(everything(), mean, na.rm = TRUE))
 
@@ -164,7 +170,7 @@ numeric_names <- names(numeric_vars)
 
 for (v in numeric_names) {
   print(
-    ggplot(train, aes_string(x = "is_canceled", y = v)) +
+    ggplot(hotels, aes_string(x = "is_canceled", y = v)) +
       geom_boxplot() +
       ggtitle(v)
   )
