@@ -69,12 +69,6 @@ colSums(is.na(hotels))
 cat("---------------\n\n")
 
 
-
-
-cat("STRUCTURE: \n\n")
-str(train)
-
-
   
 # Remove missing rows
   
