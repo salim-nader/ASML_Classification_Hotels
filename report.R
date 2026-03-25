@@ -303,6 +303,9 @@ test$is_canceled  <- factor(test$is_canceled,  levels = c(0,1), labels = c("No",
 
 set.seed(1)
 
+
+cat("Training Baseline Logistic Regression.")
+       
 baseline_model <- glm(
   is_canceled ~ .,
   data = train,
