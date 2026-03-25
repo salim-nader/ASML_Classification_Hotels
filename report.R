@@ -303,7 +303,7 @@ test$is_canceled  <- factor(test$is_canceled,  levels = c(0,1), labels = c("No",
 
 set.seed(1)
 
-
+cat("-------------------------------")
 cat("Training Baseline Logistic Regression.")
        
 baseline_model <- glm(
@@ -367,6 +367,9 @@ auc(roc_obj)
 
 
 
+cat("-------------------------------")
+cat("Training Baseline Single Decision Tree.")
+       
 set.seed(1)
 
 tree_model <- rpart(
@@ -421,8 +424,11 @@ f1
 
 # RANDOM FOREST
 
-# TUNING
 
+
+cat("-------------------------------")
+cat("Training Random Forest.")
+       
 
 set.seed(1)
 
@@ -508,6 +514,13 @@ rf_results
 
 # XGB - tidymodels
 
+
+
+
+cat("-------------------------------")
+cat("Training XGBoost Model.")
+       
+
 set.seed(1)
 
 
@@ -578,6 +591,7 @@ roc_auc(
 
 
 
+cat("-------------------------------")       
 
 
 
