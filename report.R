@@ -290,8 +290,6 @@ str(new_data)
 
 set.seed(1)
 
-#train_index <- sample(1:nrow(baseline_data), 0.7 * nrow(baseline_data))
-
 train_index <- createDataPartition(new_data$is_canceled, p = 0.7, list = FALSE)
 
 train <- new_data[train_index, ]
