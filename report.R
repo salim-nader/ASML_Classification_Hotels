@@ -248,14 +248,14 @@ p8 <- ggplot(hotels, aes(lead_time, fill=is_canceled)) +
 
 
 
-ggsave("plot1.png", p1, width=6, height=4, dpi=300)
-ggsave("plot2.png", p2, width=6, height=4, dpi=300)
-ggsave("plot3.png", p3, width=6, height=4, dpi=300)
-ggsave("plot4.png", p4, width=6, height=4, dpi=300)
-ggsave("plot5.png", p5, width=6, height=4, dpi=300)
-ggsave("plot6.png", p6, width=6, height=4, dpi=300)
-ggsave("plot7.png", p7, width=6, height=4, dpi=300)
-ggsave("plot8.png", p8, width=6, height=4, dpi=300)
+ggsave("eda_plot1.png", p1, width=6, height=4, dpi=300)
+ggsave("eda_plot2.png", p2, width=6, height=4, dpi=300)
+ggsave("eda_plot3.png", p3, width=6, height=4, dpi=300)
+ggsave("eda_plot4.png", p4, width=6, height=4, dpi=300)
+ggsave("eda_plot5.png", p5, width=6, height=4, dpi=300)
+ggsave("eda_plot6.png", p6, width=6, height=4, dpi=300)
+ggsave("eda_plot7.png", p7, width=6, height=4, dpi=300)
+ggsave("eda_plot8.png", p8, width=6, height=4, dpi=300)
 
 
   
